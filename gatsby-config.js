@@ -27,6 +27,29 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+
+    // Advanced config, passing parameters to apollo-link
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        url: "https://api.github.com/graphql",
+        // HTTP headers
+        headers: {
+          // Learn about environment variables: https://gatsby.dev/env-vars
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        },
+        // HTTP headers alternatively accepts a function (allows async)
+        headers: async () => {
+          return {
+            Authorization: await getAuthorizationToken(),
+          }
+        },
+        // Additional options to pass to node-fetch
+        fetchOptions: {},
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
