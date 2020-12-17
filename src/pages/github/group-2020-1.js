@@ -78,7 +78,7 @@ export const query = graphql`
   } 
 `
 
-const IndexPage = ({ data }) => {
+const Group20201 = ({ data }) => {
     console.log(data);
     return (
         <Layout>
@@ -87,4 +87,4 @@ const IndexPage = ({ data }) => {
       );
 }
 
-export default IndexPage
+export default Group20201
